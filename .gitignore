@@ -1,0 +1,7 @@
+.vscode
+.terraform
+*.auto.tfvars
+
+secret.*
+*.tfstate
+*.tfstate.*\
