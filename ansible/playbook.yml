@@ -1,0 +1,29 @@
+- name: Setup Redmine
+  hosts: all
+  become: true
+
+  roles:
+    - role: geerlingguy.pip
+      pip_install_packages:
+        - docker
+      become: true
+
+  tasks:
+    - name: create .env file
+      template:
+        src: templates/.env.j2
+        dest: .env
+        mode: '664'
+      tags: redmine
+
+    - name: start redmine
+      docker_container:
+        name: redmine
+        image: redmine
+        state: started
+        restart: true
+        recreate: true
+        env_file: .env
+        published_ports:
+          - "{{ external_port }}:3000"
+      tags: redmine
