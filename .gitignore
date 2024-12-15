@@ -3,5 +3,9 @@
 *.auto.tfvars
 
 secret.*
+terraform/secret.*
+*.backup
 *.tfstate
 *.tfstate.*\
+
+.DS_Store
