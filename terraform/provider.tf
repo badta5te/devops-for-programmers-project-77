@@ -50,6 +50,13 @@ resource "digitalocean_loadbalancer" "web" {
     port     = 80
     path     = "/"
   }
+
+  sticky_sessions {
+    type               = "cookies"
+    cookie_name        = "DO-LB"
+    cookie_ttl_seconds = 600
+  }
+
   droplet_ids = [digitalocean_droplet.droplet1.id, digitalocean_droplet.droplet2.id]
   depends_on  = [digitalocean_droplet.droplet1, digitalocean_droplet.droplet2]
 }
