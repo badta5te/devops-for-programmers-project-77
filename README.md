@@ -6,11 +6,18 @@
 - Terraform
 - DigitalOcean Account
 
-
 ### Instalation:
 ```bash
-terraform init
-terraform apply
+make terraform_init
+make terraform_apply apply
+```
+
+After the infrastructure is created, we need to deploy the application via Ansible:
+
+```bash
+make ansible_ping
+make install_ansible_roles
+make run_ansible_playbook
 ```
 
 The application will be accessible by [https://badta5te.me](badta5te.me)

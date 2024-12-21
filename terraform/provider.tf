@@ -118,7 +118,5 @@ resource "datadog_monitor" "DataDog_http_check" {
   query   = <<EOT
 "http.can_connect".over("*").by("*").last(2).count_by_status()
 EOT
-  message = <<EOT
-Some issues with the network
-EOT
+  message = "Some issues with the network"
 }
