@@ -1,4 +1,4 @@
-redmine_db_postgres: private-db-postgresql-fra1-62764-do-user-6466579-0.e.db.ondigitalocean.com
+redmine_db_postgres: example-postgres-cluster-do-user-6466579-0.m.db.ondigitalocean.com
 redmine_db_database: defaultdb
 redmine_db_username: doadmin
 redmine_db_port: 25060

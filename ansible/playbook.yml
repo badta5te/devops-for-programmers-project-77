@@ -3,6 +3,8 @@
   become: true
 
   roles:
+    - role: geerlingguy.docker
+      become: true
     - role: geerlingguy.pip
       pip_install_packages:
         - docker
