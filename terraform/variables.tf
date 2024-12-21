@@ -27,3 +27,8 @@ variable "size" {
   type        = string
   default     = "s-1vcpu-512mb-10gb"
 }
+
+variable "domain_name" {
+  description = "Domain name for the application"
+  type        = string
+}

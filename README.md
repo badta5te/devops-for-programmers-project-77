@@ -12,3 +12,5 @@
 terraform init
 terraform apply
 ```
+
+The application will be accessible by [https://badta5te.me](badta5te.me)

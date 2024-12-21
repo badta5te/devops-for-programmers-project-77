@@ -42,6 +42,8 @@ resource "digitalocean_loadbalancer" "web" {
 
     target_port     = 80
     target_protocol = "http"
+
+    certificate_name = digitalocean_certificate.cert.name
   }
   healthcheck {
     protocol = "http"
@@ -50,6 +52,32 @@ resource "digitalocean_loadbalancer" "web" {
   }
   droplet_ids = [digitalocean_droplet.droplet1.id, digitalocean_droplet.droplet2.id]
   depends_on  = [digitalocean_droplet.droplet1, digitalocean_droplet.droplet2]
+}
+
+resource "digitalocean_domain" "domain" {
+  name = var.domain_name
+}
+
+resource "digitalocean_record" "www" {
+  domain = digitalocean_domain.domain.name
+  type   = "A"
+  name   = "www"
+  value  = digitalocean_loadbalancer.web.ip
+}
+
+resource "digitalocean_record" "root" {
+  domain = digitalocean_domain.domain.name
+  type   = "A"
+  name   = "@"
+  value  = digitalocean_loadbalancer.web.ip
+}
+
+resource "digitalocean_certificate" "cert" {
+  name    = "le-terraform"
+  type    = "lets_encrypt"
+  domains = [digitalocean_domain.domain.name]
+
+  depends_on = [digitalocean_domain.domain]
 }
 
 resource "digitalocean_database_cluster" "postgres-example" {

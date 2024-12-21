@@ -1,6 +1,5 @@
 .vscode
 .terraform
-*.auto.tfvars
 
 secret.*
 terraform/secret.*
