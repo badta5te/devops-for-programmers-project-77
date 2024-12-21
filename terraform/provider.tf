@@ -4,11 +4,20 @@ terraform {
       source  = "digitalocean/digitalocean"
       version = "~> 2.0"
     }
+    datadog = {
+      source = "DataDog/datadog"
+    }
   }
 }
 
 provider "digitalocean" {
   token = var.do_token
+}
+
+provider "datadog" {
+  api_key = var.datadog_api_key
+  app_key = var.datadog_app_key
+  api_url = "https://api.datadoghq.eu/"
 }
 
 data "digitalocean_ssh_key" "id_ed25519" {
@@ -94,4 +103,22 @@ resource "digitalocean_database_cluster" "postgres-example" {
   size       = "db-s-1vcpu-1gb"
   region     = "fra1"
   node_count = 1
+}
+
+resource "datadog_monitor" "DataDog_http_check" {
+  include_tags        = false
+  require_full_window = false
+  monitor_thresholds {
+    critical = 1
+    ok       = 1
+    warning  = 1
+  }
+  name    = "DataDog http check"
+  type    = "service check"
+  query   = <<EOT
+"http.can_connect".over("*").by("*").last(2).count_by_status()
+EOT
+  message = <<EOT
+Some issues with the network
+EOT
 }

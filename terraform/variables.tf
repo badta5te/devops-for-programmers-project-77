@@ -25,10 +25,22 @@ variable "region" {
 variable "size" {
   description = "DO size"
   type        = string
-  default     = "s-1vcpu-512mb-10gb"
+  default     = "s-1vcpu-1gb"
 }
 
 variable "domain_name" {
   description = "Domain name for the application"
   type        = string
+}
+
+variable "datadog_api_key" {
+  description = "DataDog API key"
+  type        = string
+  sensitive   = true
+}
+
+variable "datadog_app_key" {
+  description = "DataDog application key"
+  type        = string
+  sensitive   = true
 }

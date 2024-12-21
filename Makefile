@@ -1,5 +1,5 @@
 ping:
-	ansible webservers -i ansible/inventory.ini -u root -m ping
+	ansible webservers -i ansible/inventory.ini -u root -m ping --ask-vault-pass
 
 install_role:
 	ansible-galaxy install -r ansible/requirements.yml

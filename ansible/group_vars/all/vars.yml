@@ -3,3 +3,13 @@ redmine_db_database: defaultdb
 redmine_db_username: doadmin
 redmine_db_port: 25060
 external_port: 80
+datadog_site: datadoghq.eu
+datadog_api_key: "{{ vault_datadog_api_key }}"
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+      - name: "Check availability of the first web application"
+        url: "http://157.230.99.137:{{ external_port }}"
+      - name: "Check availability of the second web application"
+        url: "http://68.183.77.45:{{ external_port }}"
