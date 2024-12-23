@@ -9,15 +9,15 @@
 ### Instalation:
 ```bash
 make terraform_init
-make terraform_apply apply
+make terraform_apply
 ```
 
 After the infrastructure is created, we need to deploy the application via Ansible:
 
 ```bash
 make ansible_ping
-make install_ansible_roles
-make run_ansible_playbook
+make ansible_install_roles
+make ansible_run_playbook
 ```
 
 The application will be accessible by [https://badta5te.me](https://badta5te.me)
