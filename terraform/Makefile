@@ -6,3 +6,6 @@ apply:
 
 validate:
 	terraform validate
+
+destroy:
+	terraform destroy

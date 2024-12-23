@@ -21,3 +21,6 @@ terraform_apply:
 
 terraform_validate:
 	make -C terraform validate
+
+terraform_destroy:
+	make -C terraform destroy
