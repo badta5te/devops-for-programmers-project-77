@@ -1,20 +1,23 @@
 ansible_ping:
-	ansible webservers -i ansible/inventory.ini -u root -m ping --ask-vault-pass
+	make -C ansible ping
 
-install_ansible_roles:
-	ansible-galaxy install -r ansible/requirements.yml
+ansible_install_roles:
+	make -C ansible install_roles
 
-run_ansible_playbook:
-	ansible-playbook ansible/playbook.yml -i ansible/inventory.ini --ask-vault-pass -u root
+ansible_run_playbook:
+	make -C ansible run_playbook
 
 edit_vault:
-	ansible-vault edit ansible/group_vars/webservers/vault.yml
+	make -C ansible edit_vault
 
 view_vault:
-	ansible-vault view ansible/group_vars/webservers/vault.yml
+	make -C ansible view_vault
 
 terraform_init:
-	cd terraform && terraform init
+	make -C terraform init
 
 terraform_apply:
-	cd terraform && terraform apply
+	make -C terraform apply
+
+terraform_validate:
+	make -C terraform validate
