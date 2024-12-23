@@ -21,7 +21,7 @@
     - name: start redmine
       docker_container:
         name: redmine
-        image: redmine
+        image: redmine:6.0-alpine
         state: started
         restart: true
         recreate: true
