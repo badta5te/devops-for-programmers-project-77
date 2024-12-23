@@ -20,4 +20,4 @@ make install_ansible_roles
 make run_ansible_playbook
 ```
 
-The application will be accessible by [https://badta5te.me](badta5te.me)
+The application will be accessible by [https://badta5te.me](https://badta5te.me)
